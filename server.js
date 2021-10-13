@@ -15,7 +15,7 @@ app.use(express.static('public'));
 
 
 app.get("/api/notes", (req, res) =>
-  fs.readFile(path.join(__dirname, './db/db.json'), "utf-8", function (err, data) {
+  fs.readFile(path.join(__dirname, '../db/db.json'), "utf-8", function (err, data) {
     if (err) {
       throw err;
     }
@@ -25,7 +25,7 @@ app.get("/api/notes", (req, res) =>
 
 // poste route using DB.JSON file
 app.post('/api/notes', (req, res) => {
-  fs.readFile(path.join(__dirname, './db/db.json'), "utf-8", function (err, data) {
+  fs.readFile(path.join(__dirname, '../db/db.json'), "utf-8", function (err, data) {
     if (err) {
       console.log(err);
     }
