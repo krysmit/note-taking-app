@@ -13,13 +13,24 @@ app.use(htmlroutes);
 app.use(apiroutes);
 app.use(express.static('public'));
 
+
+app.get("/api/notes", (req, res) =>
+  fs.readFile(path.join(__dirname, './db/db.json'), "utf-8", function (err, data) {
+    if (err) {
+      throw err;
+    }
+    const notes = JSON.parse(data);
+    res.json(notes);
+  }));
+
+// poste route using DB.JSON file
 app.post('/api/notes', (req, res) => {
   fs.readFile(path.join(__dirname, './db/db.json'), "utf-8", function (err, data) {
     if (err) {
       console.log(err);
     }
     const notes = JSON.parse(data);
-    console.log('Parsed!', notes)
+    console.log('Parse!', notes)
     const noteRequest = req.body;
     const newNote = {
       id: uuid(),
@@ -30,11 +41,12 @@ app.post('/api/notes', (req, res) => {
     res.json(newNote);
 
     fs.writeFileSync(path.join(__dirname, './db/db.json'), JSON.stringify(notes, null, 2), "utf-8", (function (err) {
-      if (err) throw err; console.log("New note!")
+      if (err) throw err; console.log("New note created!")
     }));
   });
 
 });
+
 
 
 
