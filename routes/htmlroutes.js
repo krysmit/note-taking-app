@@ -3,12 +3,12 @@ const app = require('express').Router();
 
 //to get notes.html
 app.get('/notes', (req, res) =>
-  res.sendFile(path.join(__dirname, '../public/notes.html'), console.log("going to notes"))
+  res.sendFile(path.join(__dirname, '../public/notes.html'))
 
 );
 
 app.get('/', (req, res) =>
-  res.sendFile(path.join(__dirname, '../public/index.html'), console.log("going to index"))
+  res.sendFile(path.join(__dirname, '../public/index.html'))
 
 );
 
